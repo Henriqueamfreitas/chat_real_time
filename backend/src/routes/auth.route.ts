@@ -1,8 +1,8 @@
 import { Router } from "express"
-import { userController } from "../controllers"
+import { authController } from "../controllers"
 
 const authRoute: Router = Router()
 
-// authRoute.post("/", userController.create)
+authRoute.post("/", authController.login)
 
 export default { authRoute }
