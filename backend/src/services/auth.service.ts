@@ -16,7 +16,8 @@ const login = async ({ email, password }: ILoginService) => {
   const isPasswordValid = await compare(password, findUser.passwordHash)
   if (!isPasswordValid) throw new AppError('Invalid Credentials', 401)
 
-  const secretKey: string = process.env.SECRET_KEY || ""
+  if (!process.env.SECRET_KEY) throw new AppError('Missing secret key')
+  const secretKey: string = process.env.SECRET_KEY
 
   const token = sign(
     {
